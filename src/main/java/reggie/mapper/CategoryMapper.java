@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 import reggie.entity.Category;
 
 @Mapper
-public interface CatergoryMapper extends BaseMapper<Category> {
+public interface CategoryMapper extends BaseMapper<Category> {
 }

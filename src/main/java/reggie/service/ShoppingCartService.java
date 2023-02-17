@@ -1,9 +1,8 @@
 package reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import reggie.entity.Dish;
-import reggie.entity.DishFlavor;
+import reggie.entity.ShoppingCart;
 
-public interface DishFlavorService extends IService<DishFlavor> {
+public interface ShoppingCartService extends IService<ShoppingCart> {
 }
 

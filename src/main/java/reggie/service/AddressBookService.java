@@ -1,10 +1,9 @@
 package reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import reggie.entity.AddressBook;
 import reggie.entity.Category;
 
-import java.io.Serializable;
+public interface AddressBookService extends IService<AddressBook> {
 
-public interface CategoryService extends IService<Category> {
-    public void remove(Long ids);
 }

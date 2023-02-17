@@ -8,13 +8,13 @@ import reggie.common.CustomException;
 import reggie.entity.Category;
 import reggie.entity.Dish;
 import reggie.entity.Setmeal;
-import reggie.mapper.CatergoryMapper;
+import reggie.mapper.CategoryMapper;
 import reggie.service.CategoryService;
 import reggie.service.DishService;
 import reggie.service.SetmealService;
 
 @Service
-public class CategoryServiceImpl extends ServiceImpl<CatergoryMapper, Category>implements CategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>implements CategoryService {
     /**
      * 根据id删除分类，删除签需要判断分类下是否有关联套餐or菜品
      * @param ids

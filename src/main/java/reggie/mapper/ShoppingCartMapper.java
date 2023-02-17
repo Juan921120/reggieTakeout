@@ -2,8 +2,8 @@ package reggie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import reggie.entity.Category;
+import reggie.entity.ShoppingCart;
 
 @Mapper
-public interface CategoryMapper extends BaseMapper<Category> {
+public interface ShoppingCartMapper extends BaseMapper<ShoppingCart> {
 }
