@@ -21,8 +21,8 @@ mybatis-plus:
     db-config:
       id-type: ASSIGN_ID
 reggie:
-#  path: /Users/caojuan/Desktop/reggie_takeout/
+  path: /Users/caojuan/Desktop/reggie_takeout/
   #公司电脑
-  path: /Users/ui/Desktop/reggie_takeout/
+#  path: /Users/ui/Desktop/reggie_takeout/
 
 

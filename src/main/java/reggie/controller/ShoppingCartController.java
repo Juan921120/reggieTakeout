@@ -3,14 +3,14 @@ package reggie.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reggie.common.BaseContext;
 import reggie.common.R;
 import reggie.entity.ShoppingCart;
 import reggie.service.ShoppingCartService;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/shoppingCart")
@@ -18,6 +18,12 @@ import reggie.service.ShoppingCartService;
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
+
+    /**
+     * 添加
+     * @param shoppingCart
+     * @return
+     */
     @PostMapping("/add")
     public R<ShoppingCart> add(@RequestBody ShoppingCart shoppingCart){
         log.info("添加购物车:{}",shoppingCart);
@@ -46,9 +52,53 @@ public class ShoppingCartController {
         }else{
             //如果不存在，则添加到购物车，默认数量是1
           shoppingCart.setNumber(1);
+          shoppingCart.setCreateTime(LocalDateTime.now());
           shoppingCartService.save(shoppingCart);
             cartServiceone=shoppingCart;
         }
         return R.success(cartServiceone);
+    }
+
+    /**
+     * 查看购物车
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<ShoppingCart>> list(){
+        LambdaQueryWrapper<ShoppingCart> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+        queryWrapper.orderByAsc(ShoppingCart::getCreateTime);
+        List<ShoppingCart> list = shoppingCartService.list(queryWrapper);
+        return R.success(list);
+    }
+    @DeleteMapping("/clean")
+    public R<String> clean(){
+        LambdaQueryWrapper<ShoppingCart> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+        shoppingCartService.remove(queryWrapper);
+        return R.success("清空购物车成功");
+    }
+    @PostMapping("/sub")
+    public R<ShoppingCart> sub(@RequestBody ShoppingCart shoppingCart){
+        Long setmealId = shoppingCart.getSetmealId();
+        Long dishId = shoppingCart.getDishId();
+        LambdaQueryWrapper<ShoppingCart> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(ShoppingCart::getUserId,BaseContext.getCurrentId());
+
+        if (setmealId!=null){
+            queryWrapper.eq(ShoppingCart::getSetmealId,setmealId);
+        }else {
+            queryWrapper.eq(ShoppingCart::getDishId,dishId);
+        }
+        ShoppingCart one = shoppingCartService.getOne(queryWrapper);
+        Integer number = one.getNumber();
+        if(number==1){
+            shoppingCartService.remove(queryWrapper);
+        }else {
+            one.setNumber(number-1);
+            shoppingCartService.updateById(one);
+        }
+
+        return R.success(one);
     }
 }
