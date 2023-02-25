@@ -53,7 +53,6 @@ public class AddressBookController {
         addressBookService.updateById(addressBook);
         return R.success(addressBook);
     }
-
     /**
      * 根据id查询地址
      */
@@ -66,7 +65,6 @@ public class AddressBookController {
             return R.error("没有找到该对象");
         }
     }
-
     /**
      * 查询默认地址
      */
