@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import reggie.common.R;
 import reggie.dto.SetmealDto;
@@ -37,6 +39,7 @@ public class SetMealController {
      * @return
      */
     @PostMapping
+    @CacheEvict(value="setmealCache",allEntries=true)
     public R<String> save(@RequestBody SetmealDto setmealDto) {
         log.info("套餐信息：{}", setmealDto);
         setmealService.saveWithDish(setmealDto);
@@ -84,6 +87,7 @@ public class SetMealController {
      * @return
      */
     @DeleteMapping
+    @CacheEvict(value="setmealCache",allEntries=true)
     public R<String> delete(@RequestParam List<Long> ids) {
         setmealService.removeWithDish(ids);
         return R.success("套餐删除成功");
@@ -94,10 +98,12 @@ public class SetMealController {
      * @param setmeal
      * @return
      */
-    @GetMapping("list")
+    @GetMapping("/list")
+    @Cacheable(value="setmealCache",key="#setmeal.categoryId+'_'+#setmeal.status")
     public R<List<Setmeal>> list( Setmeal setmeal) {
         LambdaQueryWrapper<Setmeal> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Setmeal::getCategoryId, setmeal.getCategoryId());
+        queryWrapper.eq(setmeal.getCategoryId()!=null,Setmeal::getCategoryId, setmeal.getCategoryId());
+        queryWrapper.eq(setmeal.getStatus()!=null,Setmeal::getStatus,setmeal.getStatus());
         queryWrapper.orderByDesc(Setmeal::getUpdateTime);
         List<Setmeal> list = setmealService.list(queryWrapper);
         return R.success(list);
@@ -117,6 +123,7 @@ public class SetMealController {
 
     //修改套餐
     @PutMapping
+    @CacheEvict(value="setmealCache",allEntries=true)
     public R<String> update(@RequestBody SetmealDto setmealDto){
         setmealService.updateWithDish(setmealDto);
         return R.success("修改成功");
