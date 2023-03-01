@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ed43c10-4ba6-4c97-9dcb-a7985d064a34" name="Changes" comment="使用redis缓存短信验证码和菜品数据">
+    <list default="true" id="0ed43c10-4ba6-4c97-9dcb-a7985d064a34" name="Changes" comment="使用spring cache缓存套餐数据">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/reggie/ReggieApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/ReggieApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/reggie/common/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/common/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reggie/config/webMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/config/webMvcConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/reggie/controller/SetMealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/controller/SetMealController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reggie/entity/Setmeal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/entity/Setmeal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reggie/fliter/LoginCheckFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reggie/fliter/LoginCheckFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +154,7 @@
       <workItem from="1677338590954" duration="101000" />
       <workItem from="1677365185836" duration="138000" />
       <workItem from="1677371109535" duration="3127000" />
+      <workItem from="1677668336197" duration="3230000" />
     </task>
     <task id="LOCAL-00001" summary="2.18 commit">
       <created>1676687856534</created>

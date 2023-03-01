@@ -1,10 +1,11 @@
 package reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,13 +14,14 @@ import java.time.LocalDateTime;
  * 套餐
  */
 @Data
+@ApiModel("套餐")
 public class Setmeal implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @ApiModelProperty("主键")
     private Long id;
 
-
+    @ApiModelProperty("分类id")
     //分类id
     private Long categoryId;
 

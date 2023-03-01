@@ -33,7 +33,12 @@ public static final AntPathMatcher PATH_MATCHER=new AntPathMatcher();
                 "/front/**",
                 "/common/**",
                 "/user/sendMsg",
-                "/user/login"
+                "/user/login",
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources",
+                "/v2/api-docs"
+
         };
 
         //判断本次请求是否需要处理
